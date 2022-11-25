@@ -28,7 +28,9 @@ services:
     depends_on:
       - database
       - directory
-    image: docker.io/webpwnized/mutillidae:www
+    build:
+      context: .
+      dockerfile: Dockerfile.www
     ports:
       - 127.0.0.1:80:80
       - 127.0.0.1:8080:80

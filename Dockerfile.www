@@ -1,0 +1,4 @@
+FROM docker.io/webpwnized/mutillidae:www
+
+RUN echo "Mutex posixsem" >> /etc/apache2/apache2.conf
+
