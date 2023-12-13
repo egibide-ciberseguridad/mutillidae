@@ -1,20 +1,39 @@
-help:
+#!make
+
+help: _header
+	${info }
 	@echo Opciones:
-	@echo -------------------
+	@echo ---------------------------------------------
 	@echo start
 	@echo stop
 	@echo clean
-	@echo macos_ip_patch
-	@echo -------------------
+	@echo macos-ip-patch
+	@echo ---------------------------------------------
 
-start:
-	@docker-compose up -d
+_urls: _header
+	${info }
+	@echo Sitios disponibles:
+	@echo ---------------------------------------------
+	@echo [Mutillidae] http://mutillidae.localhost
+	@echo [phpMyAdmin] http://mutillidae.localhost:81
+	@echo [phpLDAPadmin] http://mutillidae.localhost:82
+	@echo ---------------------------------------------
+
+_header:
+	@echo ----------
+	@echo Mutillidae
+	@echo ----------
+
+_start_command:
+	@docker compose up -d
+
+start: _start_command _urls
 
 stop:
-	@docker-compose stop
+	@docker compose stop
 
 clean:
-	@docker-compose down -v --remove-orphans
+	@docker compose down -v --remove-orphans
 
-macos_ip_patch:
+macos-ip-patch:
 	@sudo ifconfig lo0 alias 127.0.0.2 up
